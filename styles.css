@@ -1,0 +1,392 @@
+header {
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 1000;
+  background-color: #fdf6f0;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 0; /* 彻底靠左 */
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* 鼠标悬停微放大 */
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* 响应式适配，屏幕小的时候 */
+@media (max-width: 768px) {
+  .logo {
+    width: 80px;
+  }
+
+ body {
+    text-align:center;
+    font-family: Arial, sans-serif; 
+    position: relative; 
+   
+}
+
+header, section, footer { 
+  margin: 20px auto; 
+}
+
+  .nav a {
+    font-size: 14px;
+  }
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; 
+  position: relative; 
+  margin-right: 30px;
+}
+
+nav a { 
+  margin: 0 10px; 
+  text-decoration: none; 
+  color: #666;
+  font-weight: bold; 
+  display: inline-block; 
+}
+
+#languageToggle {
+  margin-left: 20px; 
+  font-size: 14px; 
+  cursor: pointer;
+  background: none; 
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 5px; 
+}
+#about { 
+  text-align:center;
+  position: relative;
+  margin-top: 150px; 
+  
+}
+#about {
+  position: relative; /* 让伪元素定位基于这个容器 */
+  z-index: 1; /* 正常显示内容 */
+}
+
+#about::before { 
+  content: ""; 
+  position: absolute; 
+  top: -80px; /* 可以根据视觉需要微调 */
+  left: 15%; 
+  transform: translateX(-50%); 
+  width: 300px; 
+  height: 300px;
+  background: url('imagine/background.png') no-repeat left center;
+  background-size: contain;
+  opacity: 0.9;
+  z-index: 2; /* 比内容高！才能浮在上面 */
+  pointer-events: none;
+  animation: fadeIn 2s ease-out forwards; /* 加入动画 */
+}
+
+/* 定义fadeIn动画 */
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px); /* 稍微往上，轻飘感 */
+  }
+  100% {
+      opacity: 0.9;
+      transform: translateX(-50%) translateY(0); /* 回到正常 */
+  }
+}
+
+#about .about-card {
+ background: #f7c9d696; 
+ box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+ border-radius: 20px;
+ display: flex;
+ align-items: center; 
+ justify-content: flex-start; 
+ padding: 40px; position: relative; 
+ overflow: visible; z-index: 1; 
+ width: 800px; margin: 0 auto; 
+}
+
+#about .about-text { flex: 1;
+   text-align: left;
+    font-size: 18px;
+     color: #555;
+}
+
+ #about .about-text h3 { font-size: 32px; 
+  margin-bottom: 10px; 
+  color: #333; 
+}
+
+#about .about-text p { margin: 10px 0; 
+  line-height: 1.6; 
+}
+
+#about .about-icons {
+   margin-top: 15px;
+}
+
+#about .about-icons i { 
+  margin-right: 10px; 
+  font-size: 20px; 
+  color: #666; 
+}
+
+#about .about-image { 
+  position: absolute; 
+  right: -60px; top: 50%; 
+  transform: translateY(-50%); 
+}
+
+#about .about-image img { 
+  width: 220px; 
+  height: 220px; 
+  object-fit: cover; 
+  border-radius: 20px; 
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+} 
+
+#projects {
+  text-align:center;
+  margin-top: 80px;
+
+}
+
+/* 轮播容器 */
+.carousel-container {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  padding: 0 80px; /* 两边留空间，让按钮好点 */
+}
+
+/* 轮播滑动轨道 */
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+/* 单个项目卡片 */
+.project-card {
+  min-width: 340px; /* 卡片稍微大一点 */
+  margin: 0 20px; /* 左右留空，视觉更舒服 */
+  background:#f9edd1;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 卡片内图片 */
+.project-card img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain; /* 👈用contain而不是cover */
+  background-color: #f9edd1; /* 可选，图片比例不同留白时背景色 */
+  border-radius: 10px;
+}
+
+/* 左右箭头按钮 */
+.carousel-button {
+  background: none; /* 彻底去掉背景 */
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1000; /* 放最上层，不被盖住 */
+  color: #333; /* 箭头颜色 */
+  font-size: 36px; /* 箭头尺寸 */
+  padding: 10px; /* 点击区域稍大，方便点 */
+}
+
+/* 左按钮 */
+.carousel-button.prev {
+  left: 20px;
+}
+
+/* 右按钮 */
+.carousel-button.next {
+  right: 20px;
+}
+
+/* 小圆点容器 */
+.carousel-dots {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* 单个小圆点 */
+.carousel-dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+  border-radius: 50%;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* 激活状态的小圆点 */
+.carousel-dots .active {
+  background: #ffb6b9;
+  transform: scale(1.2);
+}
+
+#publications { 
+  text-align:center;
+  margin-top: 80px; 
+  padding: 20px; 
+
+}
+
+.publication { background: #fff0f5; 
+  border-radius: 20px; 
+  padding: 20px; 
+  margin-bottom: 40px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+  text-align: left; 
+}
+
+.pub-header { 
+  margin-bottom: 10px; 
+}
+
+.conf-tag { 
+  background-color: #cbaacb; 
+  color: white; 
+  padding: 5px 10px; 
+  border-radius: 10px; 
+  margin-right: 10px; 
+  font-size: 14px; 
+}
+
+.pub-button { 
+  background-color: #6a0572; 
+  color: white; 
+  padding: 5px 10px;
+  margin-left: 5px; 
+  border-radius: 5px; 
+  text-decoration: none; 
+  font-size: 14px; 
+}
+
+.pub-button:hover { 
+  background-color: #8e44ad; 
+}
+
+.pub-venue { 
+  font-style: italic; 
+  color: #666; 
+  margin-top: 5px; 
+}
+
+.pub-img {
+  width: 100%; 
+  max-width: 600px; 
+  margin-top: 15px; 
+  border-radius: 10px; 
+}
+
+#contact { 
+  margin-top: 80px; 
+  text-align: center;
+
+}
+
+#backToTop { position: fixed; 
+  bottom: 40px; 
+  right: 40px; 
+  background-color: #ffb6b9; 
+  color: white; 
+  border: none; 
+  border-radius: 50%; width: 50px; 
+  height: 50px; 
+  font-size: 24px; 
+  display: none; 
+  align-items: center; 
+  justify-content: center; 
+  cursor: pointer; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+  transition: all 0.3s ease; 
+}
+           
+#backToTop:hover { 
+  background-color: #ff8c94; 
+}
+
+footer { 
+  margin-top: 50px; 
+  font-size: 14px; 
+  color: #666; 
+  text-align: center; 
+  padding-bottom: 40px; 
+}
+           
+footer a { 
+  color: #666; 
+  text-decoration: none; 
+  margin: 0 10px; 
+ 
+}
+
+footer a:hover { 
+  text-decoration: underline; 
+}
+
+@media (max-width: 768px) {
+  #about .about-card {
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 90%; /* 宽度更适配小屏 */
+ }
+
+#about .about-image {
+  position: static;
+  transform: none;
+  margin-top: 20px;
+ }
+
+#about .about-image img {
+  width: 180px;
+  height: 180px;
+ }
+
+#about .about-text {
+  text-align: center;
+ }
+
+#languageToggle {
+  transition: opacity 0.3s ease;
+  }
+}
